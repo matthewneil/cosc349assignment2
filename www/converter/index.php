@@ -53,37 +53,37 @@
        if(strcmp($_GET['timezone'], "nzt") == 0){
         $nz_time = new DateTimeZone('Pacific/Auckland');
         $datetime->setTimezone($nz_time);
-        echo $datetime->format('H:i:s'); 
+        echo $datetime->format('H:i'); 
        }
        if(strcmp($_GET['timezone'], "est") == 0){
         $est_time = new DateTimeZone('America/New_York');
         $datetime->setTimezone($est_time);
-        echo $datetime->format('H:i:s'); 
+        echo $datetime->format('H:i'); 
        }
        if(strcmp($_GET['timezone'], "jst") == 0){
         $jst_time = new DateTimeZone('Asia/Tokyo');
         $datetime->setTimezone($jst_time);
-        echo $datetime->format('H:i:s');
+        echo $datetime->format('H:i');
        }
        if(strcmp($_GET['timezone'], "msk") == 0){
         $msk_time = new DateTimeZone('Europe/Moscow');
         $datetime->setTimezone($msk_time);
-        echo $datetime->format('H:i:s');
+        echo $datetime->format('H:i');
        }
        if(strcmp($_GET['timezone'], "sgt") == 0){
         $sgt_time = new DateTimeZone('Asia/Singapore');
         $datetime->setTimezone($sgt_time);
-        echo $datetime->format('H:i:s');
+        echo $datetime->format('H:i');
        }
        if(strcmp($_GET['timezone'], "aest") == 0){
         $aest_time = new DateTimeZone('Australia/Brisbane');
         $datetime->setTimezone($aest_time);
-        echo $datetime->format('H:i:s');
+        echo $datetime->format('H:i');
        }
        if(strcmp($_GET['timezone'], "clst") == 0){
         $clst_time = new DateTimeZone('Antarctica/Palmer');
         $datetime->setTimezone($clst_time);
-        echo $datetime->format('H:i:s');
+        echo $datetime->format('H:i');
        }
       ?>
 
