@@ -4,9 +4,14 @@
 <h1 id="demo"> World Timezone Converter </h1>
 </head>
 
+<?php
+   $ip = "http://ec2-52-200-184-187.compute-1.amazonaws.com";
+?>
+
 
 <body>
-<p> <?php $time = file_get_contents("http://192.168.2.13?timezone=nzt");?> </p>
+  <p> <?php $tz = "?timezone=nzt";
+         $time = file_get_contents($ip.$tz);?> </p>
 <p>Current New Zealand time: <?php echo "$time"; ?></p>
 
 <p id="output"></p>
@@ -16,36 +21,43 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['Convert'])){
 func();
 }
 
-function func(){
+   function func(){
+   $ip = "http://ec2-52-200-184-187.compute-1.amazonaws.com";
 $timezone = $_POST['timezone'];
-$db_host = '192.168.2.12';
-$db_name = 'timezones';
-$db_user = 'webuser';
+   $db_host = 'tzdatabase.cjzs748frcfu.us-east-1.rds.amazonaws.com';
+$db_name = 'tzdatabase';
+$db_user = 'admin';
 $db_passwd = 'Quack1nce4^';
 $pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
 $pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
-if($timezone == "EST"){
-$est = file_get_contents("http://192.168.2.13?timezone=est");
+   if($timezone == "EST"){
+   $tze = "?timezone=est";
+$est = file_get_contents($ip.$tze);
 $_SESSION['times'] = "<p> Eastern Standard Time: $est </p>";
 $q = $pdo->query("UPDATE timezones SET defaultzone = 'EST' WHERE userID='User'");
 } else if($timezone == "JST"){
-$jst = file_get_contents("http://192.168.2.13?timezone=jst");
+$tzj = "?timezone=jst";
+$jst = file_get_contents($ip.$tzj);
 $_SESSION['times'] = "<p> Japan Standard Time: $jst </p>";
 $q = $pdo->query("UPDATE timezones SET defaultzone = 'JST' WHERE userID='User'");
 } else if($timezone == "MSK"){
-$msk = file_get_contents("http://192.168.2.13?timezone=msk");
+$tzm = "?timezone=msk";
+$msk = file_get_contents($ip.$tzm);
 $_SESSION['times'] = "<p> Moscow Time: $msk </p>";
 $q = $pdo->query("UPDATE timezones SET defaultzone = 'MSK' WHERE userID='User'");
 } else if($timezone == "SGT"){
-$sgt = file_get_contents("http://192.168.2.13?timezone=sgt");
+$tzs = "?timezone=sgt";
+$sgt = file_get_contents($ip.$tzs);
 $_SESSION['times'] = "<p> Singapore Time: $sgt </p>";
 $q = $pdo->query("UPDATE timezones SET defaultzone = 'SGT' WHERE userID='User'");
 } else if($timezone == "AEST"){
-$aest = file_get_contents("http://192.168.2.13?timezone=aest");
+$tza = "?timezone=aest";
+$aest = file_get_contents($ip.$tza);
 $_SESSION['times'] = "<p> Australian Eastern Standard Time: $aest </p>";
 $q = $pdo->query("UPDATE timezones SET defaultzone = 'AEST' WHERE userID='User'");
 } else if($timezone == "CLST"){
-$clst = file_get_contents("http://192.168.2.13?timezone=clst");
+$tzc = "?timezone=clst";
+$clst = file_get_contents($ip.$tzc);
 $_SESSION['times'] = "<p> Antarctica (Palmer Station) Time: $clst </p>";
 $q = $pdo->query("UPDATE timezones SET defaultzone = 'CLST' WHERE userID='User'");
 }
@@ -55,9 +67,9 @@ $q = $pdo->query("UPDATE timezones SET defaultzone = 'CLST' WHERE userID='User'"
 
 <?php
 
-$db_host = '192.168.2.12';
-$db_name = 'timezones';
-$db_user = 'webuser';
+$db_host = 'tzdatabase.cjzs748frcfu.us-east-1.rds.amazonaws.com';
+$db_name = 'tzdatabase';
+$db_user = 'admin';
 $db_passwd = 'Quack1nce4^';
 $pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
 $pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
